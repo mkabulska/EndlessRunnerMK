@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour
     bool isOnGround = false;
     public float jumpForce = 1.0f;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         //Find the Rigidbody2D component that is attached to the same object as this script
          playerObject = GetComponent<Rigidbody2D>();
 
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,5 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             playerObject.AddForce(Vector2.up * jumpForce);
         }
+
+        anim.SetFloat("Speed", Mathf.Abs(movementValueX));
+        anim.SetBool("IsOnGround", isOnGround);
+
     }
 }
