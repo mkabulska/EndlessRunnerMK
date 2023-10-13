@@ -15,8 +15,15 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 5.0f;
     bool isOnGround = false;
     public float jumpForce = 1.0f;
+    private bool isJumping;
 
-    Animator anim;
+    public AudioClip jump;
+    public AudioClip backgroundMusic;
+
+    public AudioClip sfxPlayer;
+    public AudioClip musicPlayer;
+
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +31,7 @@ public class PlayerController : MonoBehaviour
         //Find the Rigidbody2D component that is attached to the same object as this script
          playerObject = GetComponent<Rigidbody2D>();
 
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,10 +49,35 @@ public class PlayerController : MonoBehaviour
         if ((isOnGround == true) && (Input.GetAxis("Jump") > 0.0f))
         {
             playerObject.AddForce(Vector2.up * jumpForce);
+            isJumping = true;
         }
 
-        anim.SetFloat("Speed", Mathf.Abs(movementValueX));
-        anim.SetBool("IsOnGround", isOnGround);
+        animator.SetFloat("Speed", Mathf.Abs(movementValueX));
+        animator.SetBool("IsOnGround", isOnGround);
 
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+            animator.SetBool("isJumping", true);
+        }
+
+        if (isOnGround == true)
+        {
+            animator.SetBool("isJumping", false);
+        }
+
+        if (isOnGround == false)
+        {
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isTouchingGround", false);
+
+        }
+
+        if (isOnGround == true)
+        {
+            animator.SetBool("isTouchingGround", true);
+        }
+
+    
     }
 }
