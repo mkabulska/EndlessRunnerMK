@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7945606858581515992
 SpriteRenderer:
@@ -94,7 +94,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6535517192493643965}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 225cda838bd1daf4f8259e9dcac487d7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
